@@ -38,7 +38,8 @@ public class FieldServiceTest {
 
         threadA.start();
 //        sleep(2000); //동시성 문제 발생 X
-        sleep(100); //동시성 문제 발생 O
+        sleep(100); //동시성 문제 발생 O 
+        //동시성 문제 -> 지역변수에서는 발생하지 않음(쓰레드마다 별도 생성) -> 같은 인스턴스 필드, static 필드에 접근시 발생 -> 값을 변경하기 때문에 발생
         threadB.start();
         //Main Thread가 종료 되어 조회 1번 안나옴
         //CountDownLatch로 가능
