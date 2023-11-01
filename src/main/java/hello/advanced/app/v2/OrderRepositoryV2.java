@@ -25,7 +25,6 @@ public class OrderRepositoryV2 {
             throw e; //예외를 꼭 다시 던저주어야 한다.
         }
 
-
         sleep(1000);
     }
 
