@@ -1,30 +1,28 @@
-package hello.advanced.app.v1;
+package hello.advanced.app.v3;
 
 import hello.advanced.trace.TraceStatus;
-import hello.advanced.trace.hellotrace.HelloTraceV1;
+import hello.advanced.trace.logtrace.LogTrace;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 @Repository
 @RequiredArgsConstructor
-public class OrderRepositoryV1 {
-    private final HelloTraceV1 trace;
+public class OrderRepositoryV3 {
+    private final LogTrace trace;
 
-    public void save(String itemId){
+    public void save(String itemId) {
         TraceStatus status = null;
-        try{
-            status =  trace.begin("OrderRepositoryV3.save()");
+        try {
+            status = trace.begin("OrderRepositoryV3.save()");
             //저장 로직
-            if(itemId.equals("ex")){
+            if (itemId.equals("ex")) {
                 throw new IllegalStateException("예외 발생!");
             }
             trace.end(status);
-        }catch (Exception e){
+        } catch (Exception e) {
             trace.exception(status, e);
             throw e; //예외를 꼭 다시 던저주어야 한다.
         }
-
-
 
         sleep(1000);
     }
